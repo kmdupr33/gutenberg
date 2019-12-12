@@ -9,7 +9,7 @@ import { noop } from 'lodash';
 import { IconButton, Dropdown, ToolbarGroup, SVG, Path } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import { DOWN } from '@wordpress/keycodes';
-import { ColorPaletteControl } from '@wordpress/block-editor';
+import { ColorPaletteControl, ContrastChecker } from '@wordpress/block-editor';
 
 const ColorSelectorSVGIcon = () => (
 	<SVG xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -87,6 +87,12 @@ const renderContent = ( {
 					label={ __( 'Background Color' ) }
 				/>
 			</div>
+
+			<ContrastChecker
+				textColor={ textColor }
+				backgroundColor={ backgroundColor }
+				isLargeText={ false }
+			/>
 		</>
 	);
 } );
