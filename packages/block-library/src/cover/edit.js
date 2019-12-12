@@ -35,12 +35,11 @@ import {
 	MediaPlaceholder,
 	MediaUpload,
 	MediaUploadCheck,
-	PanelColorSettings,
 	withColors,
 	ColorPalette,
 	__experimentalUseGradient,
-	__experimentalGradientPickerControl,
 	__experimentalGradientPicker,
+	__experimentalPanelColorGradientSettings as PanelColorGradientSettings,
 } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 import { withDispatch } from '@wordpress/data';
@@ -384,32 +383,27 @@ function CoverEdit( {
 								onChange={ ( newMinHeight ) => setAttributes( { minHeight: newMinHeight } ) }
 							/>
 						</PanelBody>
-						<PanelColorSettings
+						<PanelColorGradientSettings
 							title={ __( 'Overlay' ) }
 							initialOpen={ true }
-							colorSettings={ [ {
-								value: overlayColor.color,
-								onChange: ( ...args ) => {
+							settings={ [ {
+								colorValue: overlayColor.color,
+								gradientValue,
+								onColorChange: ( ...args ) => {
 									setAttributes( {
 										customGradient: undefined,
 									} );
 									setOverlayColor( ...args );
 								},
-								label: __( 'Overlay Color' ),
+								onGradientChange: ( newGradient ) => {
+									setGradient( newGradient );
+									setAttributes( {
+										overlayColor: undefined,
+									} );
+								},
+								label: __( 'Overlay' ),
 							} ] }
 						>
-							<__experimentalGradientPickerControl
-								label={ __( 'Overlay Gradient' ) }
-								onChange={
-									( newGradient ) => {
-										setGradient( newGradient );
-										setAttributes( {
-											overlayColor: undefined,
-										} );
-									}
-								}
-								value={ gradientValue }
-							/>
 							{ !! url && (
 								<RangeControl
 									label={ __( 'Background Opacity' ) }
@@ -421,7 +415,7 @@ function CoverEdit( {
 									required
 								/>
 							) }
-						</PanelColorSettings>
+						</PanelColorGradientSettings>
 					</>
 				) }
 			</InspectorControls>
