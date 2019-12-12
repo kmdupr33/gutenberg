@@ -13,12 +13,12 @@
  * @return array Colors CSS classes and inline styles.
  */
 function build_css_colors( $attributes ) {
-	// CSS classes.
 	$colors = array(
 		'css_classes'   => array(),
 		'inline_styles' => '',
 	);
 
+	// Text color.
 	$has_named_text_color  = array_key_exists( 'textColor', $attributes );
 	$has_custom_text_color = array_key_exists( 'customTextColor', $attributes );
 
@@ -34,6 +34,24 @@ function build_css_colors( $attributes ) {
 	} elseif ( $has_custom_text_color ) {
 		// Add the custom color inline style.
 		$colors['inline_styles'] = sprintf( 'color: %s;', $attributes['customTextColor'] );
+	}
+	
+	// Background color.
+	$has_named_background_color  = array_key_exists( 'backgroundColor', $attributes );
+	$has_custom_background_color = array_key_exists( 'customBackgroundColor', $attributes );
+	
+	// If has background color.
+	if ( $has_custom_background_color || $has_named_background_color ) {
+		// Add has-background-color class.
+		$colors['css_classes'][] = 'has-background-color';
+	}
+	
+	if ( $has_named_background_color ) {
+		// Add the background-color class.
+		$colors['css_classes'][] = sprintf( 'has-%s-background-color', $attributes['backgroundColor'] );
+	} elseif ( $has_custom_background_color ) {
+		// Add the custom background-color inline style.
+		$colors['inline_styles'] = sprintf( 'background-color: %s;', $attributes['customBackgroundColor'] );
 	}
 
 	return $colors;
