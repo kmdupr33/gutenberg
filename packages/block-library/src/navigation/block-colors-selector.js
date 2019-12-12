@@ -67,6 +67,8 @@ const renderToggleComponent = ( { value } ) => ( { onToggle, isOpen } ) => {
 const renderContent = ( {
 	textColor,
 	onTextColorChange = noop,
+	backgroundColor,
+	onBackgroundColorChange = noop,
 } ) => ( () => {
 	return (
 		<>
@@ -75,6 +77,14 @@ const renderContent = ( {
 					value={ textColor }
 					onChange={ onTextColorChange }
 					label={ __( 'Text Color' ) }
+				/>
+			</div>
+
+			<div className="color-palette-controller-container">
+				<ColorPaletteControl
+					value={ backgroundColor }
+					onChange={ onBackgroundColorChange }
+					label={ __( 'Background Color' ) }
 				/>
 			</div>
 		</>

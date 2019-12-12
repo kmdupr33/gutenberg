@@ -57,6 +57,9 @@ function Navigation( {
 	const { TextColor } = __experimentalUseColors(
 		[ { name: 'textColor', property: 'color' } ],
 	);
+	const { BackgroundColor } = __experimentalUseColors(
+		[ { name: 'backgroundColor', property: 'background-color' } ],
+	);
 	/* eslint-enable @wordpress/no-unused-vars-before-return */
 	const { navigatorToolbarButton, navigatorModal } = useBlockNavigator( clientId );
 
@@ -165,6 +168,8 @@ function Navigation( {
 				<BlockColorsStyleSelector
 					textColor={ TextColor.color }
 					onTextColorChange={ TextColor.setColor }
+					backgroundColor={ BackgroundColor.color }
+					onBackgroundColorChange={ BackgroundColor.setColor }
 				/>
 
 			</BlockControls>
