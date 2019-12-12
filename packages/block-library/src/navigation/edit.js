@@ -163,8 +163,8 @@ function Navigation( {
 					{ navigatorToolbarButton }
 				</ToolbarGroup>
 				<BlockColorsStyleSelector
-					value={ TextColor.color }
-					onChange={ TextColor.setColor }
+					textColor={ TextColor.color }
+					onTextColorChange={ TextColor.setColor }
 				/>
 
 			</BlockControls>

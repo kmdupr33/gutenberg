@@ -64,13 +64,16 @@ const renderToggleComponent = ( { value } ) => ( { onToggle, isOpen } ) => {
 	);
 };
 
-const renderContent = ( { value, onChange = noop } ) => ( () => {
+const renderContent = ( {
+	textColor,
+	onTextColorChange = noop,
+} ) => ( () => {
 	return (
 		<>
 			<div className="color-palette-controller-container">
 				<ColorPaletteControl
-					value={ value }
-					onChange={ onChange }
+					value={ textColor }
+					onChange={ onTextColorChange }
 					label={ __( 'Text Color' ) }
 				/>
 			</div>
@@ -78,7 +81,7 @@ const renderContent = ( { value, onChange = noop } ) => ( () => {
 	);
 } );
 
-export default ( colorControlProps ) => (
+const BlockColorsStyleSelector = ( colorControlProps ) => (
 	<Dropdown
 		position="bottom right"
 		className="block-library-colors-selector"
@@ -87,3 +90,5 @@ export default ( colorControlProps ) => (
 		renderContent={ renderContent( colorControlProps ) }
 	/>
 );
+
+export default BlockColorsStyleSelector;
