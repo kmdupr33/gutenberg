@@ -182,16 +182,17 @@ function Navigation( {
 				</PanelBody>
 			</InspectorControls>
 			<TextColor>
-				<div className={ blockClassNames }>
-					{ ! hasExistingNavItems && isRequestingPages && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
+				<BackgroundColor>
+					<div className={ blockClassNames }>
+						{ ! hasExistingNavItems && isRequestingPages && <><Spinner /> { __( 'Loading Navigation…' ) } </> }
 
-					<InnerBlocks
-						allowedBlocks={ [ 'core/navigation-link' ] }
-						templateInsertUpdatesSelection={ false }
-						__experimentalMoverDirection={ 'horizontal' }
-					/>
-
-				</div>
+						<InnerBlocks
+							allowedBlocks={ [ 'core/navigation-link' ] }
+							templateInsertUpdatesSelection={ false }
+							__experimentalMoverDirection={ 'horizontal' }
+						/>
+					</div>
+				</BackgroundColor>
 			</TextColor>
 		</Fragment>
 	);
